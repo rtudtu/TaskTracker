@@ -1,0 +1,50 @@
+<h1>Listing Tasks</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Desc</th>
+      <th>Assigned To</th>
+      <th>Status</th>
+      <th>Time</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= if @current_user do %>
+<%= for task <- @tasks do %>
+    <% if task.status == "Complete" do %>
+      <tr class="table-success">
+    <% else %>
+      <tr>
+    <% end %>
+
+      <td><%= task.name %></td>
+      <td><%= task.desc %></td>
+
+      <% if task.assigned do %>
+        <td><%= Tasktracker.Users.get_user(task.assigned).name %>
+          (<%= Tasktracker.Users.get_user(task.assigned).email %>)</td>
+      <% else %>
+        <td></td>
+      <% end %>
+
+      <td><%= task.status %></td>
+      <td><%= task.time %></td>
+
+      <td>
+        <%= link "Show", to: Routes.task_path(@conn, :show, task), class: "btn btn-secondary"  %>
+        <%= link "Edit", to: Routes.task_path(@conn, :edit, task), class: "btn btn-info" %>
+        <%= link "Delete", to: Routes.task_path(@conn, :delete, task), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Task", to: Routes.task_path(@conn, :new), class: "btn btn-primary" %></span>
+<% else %>
+<p>Please Login to view Tasks</p>
+<% end %>
