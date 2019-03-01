@@ -8,6 +8,7 @@ defmodule Tasktracker.Tasks.Task do
     field :name, :string
     field :status, :string
     field :time, :integer
+    belongs_to :user, Tasktracker.Users.User, foreign_key: :user_id
 
     timestamps()
   end
@@ -15,7 +16,7 @@ defmodule Tasktracker.Tasks.Task do
   @doc false
   def changeset(task, attrs) do
     task
-    |> cast(attrs, [:name, :desc, :status, :time])
+    |> cast(attrs, [:name, :desc, :status, :time, :user_id])
     |> validate_required([:name, :desc])
   end
 end

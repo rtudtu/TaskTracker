@@ -1,4 +1,17 @@
 # Tasktracker
+Home Page will feature a Register button
+User Session is shown on the right side of the navigation
+-If logged in, users will see their email and a 'Logout' option
+-If logged out, users will see an input box for logging in
+Tasks Page
+-Lists Tasks...
+Users Page
+-Lists Users, showing their Email and Name
+-Has a 'Show' button for each user that brings up that just user's details
+-Option to add another user (for a friend, colleague, or assignee)
+-Users are able to
+
+# To Start Server:
 
 To start your Phoenix server:
 

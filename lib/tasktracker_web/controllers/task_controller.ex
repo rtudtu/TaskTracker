@@ -27,6 +27,7 @@ defmodule TasktrackerWeb.TaskController do
   end
 
   def show(conn, %{"id" => id}) do
+    IO.puts(id)
     task = Tasks.get_task!(id)
     render(conn, "show.html", task: task)
   end

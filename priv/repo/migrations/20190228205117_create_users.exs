@@ -8,6 +8,8 @@ defmodule Tasktracker.Repo.Migrations.CreateUsers do
 
       timestamps()
     end
-
+    alter table(:tasks) do
+      add :user_id, references(:users, on_delete: :delete_all), null: true
+    end
   end
 end

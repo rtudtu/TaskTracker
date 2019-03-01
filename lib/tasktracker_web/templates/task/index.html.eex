@@ -7,7 +7,7 @@
       <th>Desc</th>
       <th>Assigned To</th>
       <th>Status</th>
-      <th>Time</th>
+      <th>Time (Minutes)</th>
 
       <th></th>
     </tr>
@@ -23,20 +23,13 @@
 
       <td><%= task.name %></td>
       <td><%= task.desc %></td>
-
-      <% if task.assigned do %>
-        <td><%= Tasktracker.Users.get_user(task.assigned).name %>
-          (<%= Tasktracker.Users.get_user(task.assigned).email %>)</td>
-      <% else %>
-        <td></td>
-      <% end %>
-
+      <td><%= task.user.email %></td>
       <td><%= task.status %></td>
       <td><%= task.time %></td>
 
       <td>
-        <%= link "Show", to: Routes.task_path(@conn, :show, task), class: "btn btn-secondary"  %>
-        <%= link "Edit", to: Routes.task_path(@conn, :edit, task), class: "btn btn-info" %>
+        <%= link "View", to: Routes.task_path(@conn, :show, task), class: "btn btn-secondary"  %>
+        <%= link "Update", to: Routes.task_path(@conn, :edit, task), class: "btn btn-info" %>
         <%= link "Delete", to: Routes.task_path(@conn, :delete, task), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" %>
       </td>
     </tr>

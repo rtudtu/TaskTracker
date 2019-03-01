@@ -11,6 +11,9 @@
 # and so on) as they will fail if something goes wrong.
 alias Tasktracker.Repo
 alias Tasktracker.Users.User
+alias Tasktracker.Tasks.Task
 
 Repo.insert!(%User{email: "tu.r@husky.neu.edu", name: "Richard"})
 Repo.insert!(%User{email: "bob@gmail.com", name: "Bob"})
+
+Repo.insert!(%Task{desc: "Networks", name: "Study"})

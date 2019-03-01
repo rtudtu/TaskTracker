@@ -13,6 +13,11 @@
   </li>
 
   <li>
+    <strong>Assigned To:</strong>
+    <%= @task.user && @task.user.email %>
+  </li>
+
+  <li>
     <strong>Status:</strong>
     <%= @task.status %>
   </li>
