@@ -23,7 +23,7 @@
 
       <td><%= task.name %></td>
       <td><%= task.desc %></td>
-      <td><%= task.user.email %></td>
+      <td><%= task.user && task.user.email %></td>
       <td><%= task.status %></td>
       <td><%= task.time %></td>
 

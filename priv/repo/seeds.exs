@@ -16,4 +16,4 @@ alias Tasktracker.Tasks.Task
 Repo.insert!(%User{email: "tu.r@husky.neu.edu", name: "Richard"})
 Repo.insert!(%User{email: "bob@gmail.com", name: "Bob"})
 
-Repo.insert!(%Task{desc: "Networks", name: "Study"})
+Repo.insert!(%Task{desc: "Networks", name: "Study", status: "Incomplete", time: 60})

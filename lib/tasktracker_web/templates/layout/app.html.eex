@@ -15,6 +15,9 @@
       <section class="container">
         <nav role="navigation", class="navbar navbar-expand-sm navbar-light bg-white">
           <ul class = "navbar-nav mr-auto">
+            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+          </ul>
+          <ul class = "navbar-nav mr-auto">
             <li class="nav-item"><a class="nav-link" href="/tasks">Tasks</a></li>
           </ul>
           <ul class = "navbar-nav mr-auto">
@@ -25,7 +28,7 @@
               <p>
                 User: <%= @current_user.email %> ||
                 <%= link("Logout", to: Routes.session_path(@conn, :delete),
-                  method: :delete) %>
+                  method: :delete, class: "btn btn-secondary") %>
               </p>
             <% else %>
               <%= form_for @conn, Routes.session_path(@conn, :create),
