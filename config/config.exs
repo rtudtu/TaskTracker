@@ -13,7 +13,7 @@ config :tasktracker,
 # Configures the endpoint
 config :tasktracker, TasktrackerWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "ZmFWCuSz846ioXKLQI7i3gs7pdBMU5C1DMfrHhH7VGAyIfrrAEpjDMA1eC/vmHsh",
+  secret_key_base: "011DE9BF65462A5506E58EC4FB724860E1F4BA3D646B4B8B46C7B92A2163D125",
   render_errors: [view: TasktrackerWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: Tasktracker.PubSub, adapter: Phoenix.PubSub.PG2]
 
