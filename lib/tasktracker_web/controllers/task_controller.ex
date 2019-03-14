@@ -30,6 +30,7 @@ defmodule TasktrackerWeb.TaskController do
   end
 
   def show(conn, %{"id" => id}) do
+    IO.puts("SHOW FLAG")
     IO.puts(id)
     task = Tasks.get_task!(id)
     render(conn, "show.html", task: task)
@@ -65,13 +66,13 @@ defmodule TasktrackerWeb.TaskController do
   end
 
   def tasks(conn, %{"manager_id" => id}) do
-    {t_id, ""} = Integer.parse(id)
-    tasks = Tasks.list_tasks()
-            |> Enum.filter(&(&1.user_id == t_id))
+    {uid, ""} = Integer.parse(id)
+    tasks = Tasks.list_assigned_tasks()
 
     conn
     |> assign(:tasks, tasks)
+    |> assign(:employees, Tasks.list_employees_id(uid))
     |> assign(:id, id)
-    |> render("employee_tasks.html")
+    |> render("tasks.html")
   end
 end

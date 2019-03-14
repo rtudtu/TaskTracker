@@ -1,4 +1,4 @@
-<h1>Listing Tasks</h1>
+<h1>Tasks Report</h1>
 
 <table class="table table-striped">
   <thead>
@@ -14,10 +14,8 @@
   </thead>
   <tbody>
 <%= if @current_user do %>
-<%= if Tasktracker.Tasks.list_employees(@current_user.id) > 0 do %>
-  <%= link "Task Report", to: Routes.task_path(@conn, :tasks, @current_user.id), class: "btn btn-secondary"  %>
-<% end %>
 <%= for task <- @tasks do %>
+<%= if Enum.member?(Enum.uniq(@employees), task.user.id) do %>
     <% if task.status == "Complete" do %>
       <tr class="table-success">
     <% else %>
@@ -36,6 +34,7 @@
         <%= link "Delete", to: Routes.task_path(@conn, :delete, task), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" %>
       </td>
     </tr>
+  <% end %>
 <% end %>
   </tbody>
 </table>

@@ -22,6 +22,11 @@ defmodule Tasktracker.Tasks do
     |> Repo.preload(:user)
   end
 
+  def list_assigned_tasks do
+    Repo.all(from t in Task, where: not is_nil(t.user_id))
+    |> Repo.preload(:user)
+  end
+
 
 
   @doc """
@@ -121,8 +126,13 @@ defmodule Tasktracker.Tasks do
     |> (fn f -> [f] end).()
   end
 
+  def list_employees_id(user_id) do
+    Repo.all(from m in Manage, where: m.manager_id == ^user_id, select: m.employee_id)
+  end
+
   def list_employees(user_id) do
-    Repo.all(from m in Manage, where: m.manager_id == ^user_id)
+    Repo.all(from m in Manage,
+      where: m.manager_id == ^user_id)
     |> Enum.map(&({&1.employee_id, &1.id}))
     |> Enum.into(%{})
   end

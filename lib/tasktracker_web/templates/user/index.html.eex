@@ -6,6 +6,7 @@
     <tr>
       <th>Email</th>
       <th>Name</th>
+      <th>Id</th>
 
       <th></th>
     </tr>
@@ -19,7 +20,6 @@
       <td><%= user.email %></td>
       <td><%= user.name %></td>
       <td><%= user.id %></td>
-      <td><%= @manages[user.id] %></td>
 
       <td>
         <%= link "Show", to: Routes.user_path(@conn, :show, user), class: "btn btn-secondary" %>

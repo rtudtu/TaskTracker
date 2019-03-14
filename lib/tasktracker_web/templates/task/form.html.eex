@@ -31,7 +31,7 @@
 
     <div class="form-group">
       <%= label f, :user_id, "Assign To", class: "control-label" %>
-      <%= select f, :user_id, [nil] ++ Enum.map(Tasktracker.Tasks.list_employees(@current_user.id), &{Tasktracker.Users.get_user(elem(&1,0)).email, Tasktracker.Users.get_user(elem(&1,0)).id}), class: "form-control" %>
+      <%= select f, :user_id, [nil] ++ [Tasktracker.Users.get_user(@current_user.id).email] ++ Enum.map(Tasktracker.Tasks.list_employees(@current_user.id), &{Tasktracker.Users.get_user(elem(&1,0)).email, Tasktracker.Users.get_user(elem(&1,0)).id}), class: "form-control" %>
       <%= error_tag f, :user_id %>
     </div>
 
