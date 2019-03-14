@@ -15,6 +15,12 @@
   <%= error_tag f, :name %>
   </div>
 
+  <div class="form-group">
+    <%= label f, :user_id, "Manager", class: "control-label" %>
+    <%= select f, :user_id, [nil] ++ Enum.map(Tasktracker.Users.list_users(), &(Tasktracker.Users.get_user(elem(&1,0)).email)), class: "form-control" %>
+    <%= error_tag f, :user_id %>
+  </div>
+
   <div>
     <%= submit "Register", class: "btn btn-primary" %>
   </div>

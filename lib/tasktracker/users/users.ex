@@ -19,6 +19,8 @@ defmodule Tasktracker.Users do
   """
   def list_users do
     Repo.all(User)
+    |> Repo.preload(:employees)
+    |> Repo.preload(:manager)
   end
 
   @doc """
@@ -35,9 +37,9 @@ defmodule Tasktracker.Users do
       ** (Ecto.NoResultsError)
 
   """
-  def get_user!(id), do: Repo.get!(User, id)
+  def get_user!(id), do: Repo.get!(User, id) |> Repo.preload(:employees) |> Repo.preload(:manager)
 
-  def get_user(id), do: Repo.get(User, id)
+  def get_user(id), do: Repo.get(User, id) |> Repo.preload(:employees) |> Repo.preload(:manager)
 
   def get_user_by_email(email) do
     Repo.get_by(User, email: email)

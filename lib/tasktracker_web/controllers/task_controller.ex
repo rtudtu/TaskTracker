@@ -6,7 +6,10 @@ defmodule TasktrackerWeb.TaskController do
 
   def index(conn, _params) do
     tasks = Tasks.list_tasks()
-    render(conn, "index.html", tasks: tasks)
+    conn
+    |> assign(:tasks, tasks)
+    |> assign(:isManager, False)
+    |> render("index.html")
   end
 
   def new(conn, _params) do
@@ -59,5 +62,16 @@ defmodule TasktrackerWeb.TaskController do
     conn
     |> put_flash(:info, "Task deleted successfully.")
     |> redirect(to: Routes.task_path(conn, :index))
+  end
+
+  def tasks(conn, %{"manager_id" => id}) do
+    {t_id, ""} = Integer.parse(id)
+    tasks = Tasks.list_tasks()
+            |> Enum.filter(&(&1.user_id == t_id))
+
+    conn
+    |> assign(:tasks, tasks)
+    |> assign(:id, id)
+    |> render("employee_tasks.html")
   end
 end

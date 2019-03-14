@@ -1,18 +1,27 @@
 <h1>Show User</h1>
 
-<ul>
+<div class="card-body">
 
+<ul>
   <li>
     <strong>Email:</strong>
     <%= @user.email %>
   </li>
-
   <li>
     <strong>Name:</strong>
     <%= @user.name %>
   </li>
-
 </ul>
 
-<span><%= link "Edit", to: Routes.user_path(@conn, :edit, @user), class: "btn btn-primary" %></span>
+  <div id="manager" class="pb-5 w-75 mx-auto">
+    <h3 class="text-center">Manager</h3>
+    <%= render TasktrackerWeb.UserView, "users.html", %{users: @manager, conn: @conn} %>
+  </div>
+
+  <div id="employees" class="pb-5 w-75 mx-auto">
+    <h3 class="text-center">Employees</h3>
+    <%= render TasktrackerWeb.UserView, "users.html", %{users: @users |> Enum.filter(&(@employees[&1.id] != nil)), conn: @conn} %>
+</div>
+</div>
+
 <span><%= link "Back", to: Routes.user_path(@conn, :index), class: "btn btn-primary" %></span>

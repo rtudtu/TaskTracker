@@ -1,0 +1,2 @@
+<%= render TasktrackerWeb.TaskView, "index.html",
+ %{tasks: @tasks, conn: @conn, current_user: @current_user, isManager: False} %>

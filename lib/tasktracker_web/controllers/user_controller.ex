@@ -3,10 +3,15 @@ defmodule TasktrackerWeb.UserController do
 
   alias Tasktracker.Users
   alias Tasktracker.Users.User
+  alias Tasktracker.Tasks
 
   def index(conn, _params) do
-    users = Users.list_users()
-    render(conn, "index.html", users: users)
+    current_user = conn.assigns[:current_user]
+
+    conn
+    |> assign(:users, Users.list_users())
+    |> assign(:manages, Tasks.list_manages())
+    |> render("index.html")
   end
 
   def new(conn, _params) do
@@ -28,8 +33,12 @@ defmodule TasktrackerWeb.UserController do
   end
 
   def show(conn, %{"id" => id}) do
-    user = Users.get_user!(id)
-    render(conn, "show.html", user: user)
+    conn
+    |> assign(:user, Users.get_user!(id))
+    |> assign(:users, Users.list_users())
+    |> assign(:manager, Tasks.list_managers(id))
+    |> assign(:employees, Tasks.list_employees(id))
+    |> render("show.html")
   end
 
   def edit(conn, %{"id" => id}) do

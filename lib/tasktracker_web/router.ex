@@ -21,10 +21,15 @@ defmodule TasktrackerWeb.Router do
     resources "/tasks", TaskController
     resources "/users", UserController
     resources "/sessions", SessionController, only: [:create, :delete], singleton: true
+    get "/tasks/:manager_id/tasks", TaskController, :tasks
   end
 
   # Other scopes may use custom stacks.
   # scope "/api", TasktrackerWeb do
   #   pipe_through :api
   # end
+  scope "/api/v1", TaskTrackerWeb do
+     pipe_through :api
+     resources "/manages", ManageController, except: [:new, :edit]
+   end
 end

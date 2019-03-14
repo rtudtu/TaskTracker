@@ -5,7 +5,7 @@ defmodule Tasktracker.Tasks do
 
   import Ecto.Query, warn: false
   alias Tasktracker.Repo
-
+  alias Tasktracker.Users
   alias Tasktracker.Tasks.Task
 
   @doc """
@@ -103,5 +103,49 @@ defmodule Tasktracker.Tasks do
   """
   def change_task(%Task{} = task) do
     Task.changeset(task, %{})
+  end
+
+  alias Tasktracker.Tasks.Manage
+
+  def list_manages do
+    Repo.all(Manage)
+    |> Enum.map(&({&1.employee_id, &1.id}))
+    |> Enum.into(%{})
+  end
+
+  def list_managers(user_id) do
+    Repo.all(from m in Manage, where: m.employee_id == ^user_id)
+    |> List.first()
+    |> (fn f -> f || %{manager_id: -1} end).()
+    |> (fn f -> Users.get_user(f.manager_id) end).()
+    |> (fn f -> [f] end).()
+  end
+
+  def list_employees(user_id) do
+    Repo.all(from m in Manage, where: m.manager_id == ^user_id)
+    |> Enum.map(&({&1.employee_id, &1.id}))
+    |> Enum.into(%{})
+  end
+
+  def get_manage!(id), do: Repo.get!(Manage, id)
+
+  def create_manage(attrs \\ %{}) do
+    %Manage{}
+    |> Manage.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  def update_manage(%Manage{} = manage, attrs) do
+    manage
+    |> Manage.changeset(attrs)
+    |> Repo.update()
+  end
+
+  def delete_manage(%Manage{} = manage) do
+    Repo.delete(manage)
+  end
+
+  def change_manage(%Manage{} = manage) do
+    Manage.changeset(manage, %{})
   end
 end
