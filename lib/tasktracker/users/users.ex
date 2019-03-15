@@ -109,4 +109,12 @@ defmodule Tasktracker.Users do
   def change_user(%User{} = user) do
     User.changeset(user, %{})
   end
+
+  def auth_user(email, password) do
+    user = get_user_by_email(email)
+    case Comeonin.Argon2.check_pass(user, password) do
+      {:ok, user} -> {:ok, user}
+      _else       -> {:error, nil}
+    end
+  end
 end

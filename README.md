@@ -1,15 +1,20 @@
-# Tasktracker
+# Tasktracker 2 with Managers and TimeBlocks
 Home Page will feature a Register button
 User Session is shown on the right side of the navigation
 -If logged in, users will see their email and a 'Logout' option
 -If logged out, users will see an input box for logging in
+
 Tasks Page
 -User cannot enter a Time that is not an increment of 15
--Task can be unassigned - assigned to nil - not assigned to anyone yet
+-Task can be unassigned - assigned to nil - not assigned to anyone yet - these tasks will not show up in Task Reports
+-You can only assign tasks to yourself or your underlings (employees)
+-Task Report will display all of a user's employees' tasks (will not show up if the user does not have employees)
+
 Users Page
--Lists Users, showing their Email and Name
--Has a 'Show' button for each user that brings up that just user's details
+-Lists Users, showing their Email and Name (Only lists users with relation to current user
+-Has a 'Show' button for each user that brings up that user's details along with its manager/employees if any
 -Option to add another user (for a friend, colleague, or assignee)
+-Users can only edit/delete themselves or their underlings (employees)
 
 # To Start Server:
 

@@ -10,7 +10,7 @@
   </head>
 
   <body>
-
+  <div class="container">
     <header>
       <section class="container">
         <nav role="navigation", class="navbar navbar-expand-sm navbar-light bg-white">
@@ -41,6 +41,13 @@
         </nav>
       </section>
     </header>
+  <div>
+    <%= if get_flash(@conn, :info) do %>
+      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+    <% end %>
+    <%= if get_flash(@conn, :error) do %>
+      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+    <% end %>
 
     <main role="main" class="container">
       <%= if get_flash(@conn, :info) do %>

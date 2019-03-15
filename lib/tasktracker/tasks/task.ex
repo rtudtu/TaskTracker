@@ -2,13 +2,14 @@ defmodule Tasktracker.Tasks.Task do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias Tasktracker.Users.User
 
   schema "tasks" do
     field :desc, :string
     field :name, :string
     field :status, :string
     field :time, :integer
-    belongs_to :user, Tasktracker.Users.User, foreign_key: :user_id
+    belongs_to :user, User, foreign_key: :user_id
 
     timestamps()
   end

@@ -17,7 +17,7 @@ module.exports = (env, options) => ({
   },
   output: {
     filename: 'app.js',
-    path: path.resolve(__dirname, '../priv/static/js')
+    path: path.resolve(__dirname, '../priv/static/js'),
   },
   module: {
     rules: [
@@ -25,7 +25,10 @@ module.exports = (env, options) => ({
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader'
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-react'],
+          },
         }
       },
       {
@@ -33,6 +36,9 @@ module.exports = (env, options) => ({
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
       }
     ]
+  },
+  resolve: {
+    extensions: ['.js', '.jsx', '.css']
   },
   plugins: [
     new MiniCssExtractPlugin({ filename: '../css/app.css' }),

@@ -18,8 +18,12 @@ defmodule TasktrackerWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/users", PageController, :index
+    get "/register", PageController, :index
+    get "/newTask", PageController, :index
     resources "/tasks", TaskController
     resources "/users", UserController
+    post "/token", TokenController, :create
     resources "/sessions", SessionController, only: [:create, :delete], singleton: true
     get "/tasks/:manager_id/tasks", TaskController, :tasks
   end

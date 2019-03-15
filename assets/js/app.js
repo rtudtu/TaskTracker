@@ -13,6 +13,15 @@ import "phoenix_html"
 import jQuery from 'jquery';
 window.jQuery = window.$ = jQuery;
 import "bootstrap";
+import tasktracker_init from "./components/tasktracker";
+import store from './store';
+import api from './api';
+
+$(function() {
+  api.request_tasks();
+  api.request_users();
+  tasktracker_init(store)
+});
 
 // Import local files
 //
