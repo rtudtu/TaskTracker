@@ -1,7 +1,7 @@
-defmodule TaskTracker.Tasks.TimeBlocks do
+defmodule Tasktracker.Tasks.TimeBlocks do
   use Ecto.Schema
   import Ecto.Changeset
-  alias TaskTracker.Tasks.TimeBlocks
+  alias Tasktracker.Tasks.TimeBlocks
 
 
   schema "blocks" do

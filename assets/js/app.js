@@ -94,4 +94,20 @@ function init_manage() {
   update_buttons();
 }
 
+
+function init_time_blocks() {
+  if (!$('.time-button')) {
+    return;
+  }
+
+  $(".time-button").click(time_click);
+
+}
+
+function time_click(ev) {
+  let btn = $(ev.target);
+  console.log("test")
+}
+
 $(init_manage);
+$(init_time_blocks);

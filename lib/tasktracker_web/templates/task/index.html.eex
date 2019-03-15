@@ -1,3 +1,7 @@
+<script>
+ window.time_blocks_path = "<%= Routes.time_blocks_path(@conn, :index) %>";
+</script>
+
 <h1>Listing Tasks</h1>
 
 <table class="table table-striped">
@@ -34,6 +38,13 @@
         <%= link "View", to: Routes.task_path(@conn, :show, task), class: "btn btn-secondary"  %>
         <%= link "Update", to: Routes.task_path(@conn, :edit, task), class: "btn btn-info" %>
         <%= link "Delete", to: Routes.task_path(@conn, :delete, task), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" %>
+      </td>
+<!--
+      <td class="text-right">
+        <button class="time-button btn btn-secondary"
+                data-task-id="<%= task.id %>"
+        </button>
+      -->
       </td>
     </tr>
 <% end %>

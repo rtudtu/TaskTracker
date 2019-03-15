@@ -158,4 +158,32 @@ defmodule Tasktracker.Tasks do
   def change_manage(%Manage{} = manage) do
     Manage.changeset(manage, %{})
   end
+
+  alias Tasktracker.Tasks.TimeBlocks
+
+  def list_blocks do
+    Repo.all(TimeBlocks) |> Enum.map(&({&1.id}))
+  end
+
+  def get_time_blocks!(id), do: Repo.get!(TimeBlocks, id)
+
+  def create_time_blocks(attrs \\ %{}) do
+    %TimeBlocks{}
+    |> TimeBlocks.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  def update_time_blocks(%TimeBlocks{} = time_blocks, attrs) do
+    time_blocks
+    |> TimeBlocks.changeset(attrs)
+    |> Repo.update()
+  end
+
+  def delete_time_blocks(%TimeBlocks{} = time_blocks) do
+    Repo.delete(time_blocks)
+  end
+
+  def change_time_blocks(%TimeBlocks{} = time_blocks) do
+    TimeBlocks.changeset(time_blocks, %{})
+  end
 end
