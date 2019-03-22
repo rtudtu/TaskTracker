@@ -23,10 +23,20 @@ class TheServer {
       data: JSON.stringify({ token: data.token, task: data }),
       success: (resp) => {
         console.log("success");
-        store.dispatch({
-          type: 'CREATE_TASK',
-          task: resp.data,
-        });
+        request();
+      },
+    });
+  }
+
+  update_task(data, request=this.request_tasks) {
+    let link = "/api/v1/tasks/" + data.id;
+    $.ajax(link, {
+      method: "put",
+      dataType: "json",
+      contentType: "application/json; charset=UTF-8",
+      data: JSON.stringify({ token: data.token, task: data }),
+      success: (resp) => {
+        request();
       },
     });
   }
@@ -54,7 +64,7 @@ class TheServer {
       data: JSON.stringify({ token: data.token, user: data }),
       success: (resp) => {
         store.dispatch({
-          type: 'CREATE_USER',
+          type: 'ADD_USER',
           user: resp.data,
         });
         alert("success");

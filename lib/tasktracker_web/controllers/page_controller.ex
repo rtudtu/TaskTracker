@@ -7,9 +7,4 @@ defmodule TasktrackerWeb.PageController do
     changeset = Users.change_user(%User{})
     render(conn, "index.html", changeset: changeset)
   end
-
-  def redirect_task(conn, _params) do
-    conn
-    |> redirect(to: "/users")
-  end
 end

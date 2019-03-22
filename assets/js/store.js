@@ -1,12 +1,27 @@
 import { createStore, combineReducers } from 'redux';
 import deepFreeze from 'deep-freeze';
 
+function replace(state, item) {
+  let s = state.slice();
+  for (let task in state) {
+    console.log("id:", item.id);
+    console.log(state[task].id);
+    if (item.id == state[task].id) {
+      s[task] = item;
+      console.log("replaced");
+    }
+  }
+  return s;
+}
+
 function tasks(state = [], action) {
   switch (action.type) {
     case 'TASKS_LIST':
       return [...action.task];
     case 'ADD_TASK':
-      return [action.task, ...state];
+      return [...state, action.task];
+    case 'UPDATE_TASK':
+      return replace(state, action.task);
     default:
       return state;
   }
@@ -16,8 +31,10 @@ function users(state = [], action) {
   switch (action.type) {
   case 'USERS_LIST':
     return [...action.users];
-  default:
-    return state;
+    case 'ADD_USER':
+    return [action.user, ...state];
+    default:
+      return state;
   }
 }
 

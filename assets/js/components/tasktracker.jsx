@@ -3,8 +3,10 @@ import ReactDOM from 'react-dom';
 import { Provider, connect } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Nav from './nav';
-import CreateTask from './create-task';
-import RegisterUser from './create-user';
+import CreateTask from './create_task';
+import AssignTask from './assign_task';
+import RegisterUser from './create_user';
+import CompleteTask from './complete_task';
 import Users from './users';
 import Tasks from './tasks';
 import $ from 'jquery';
@@ -36,6 +38,12 @@ let Tasktracker = connect((state) => state)((props) => {
         } />
         <Route path="/newTask" exact={true} render={() =>
             <CreateTask users={props.users} token={props.store} />
+        } />
+        <Route path="/assign/:id" exact={true} render={(args) =>
+            <AssignTask users={props.users} tasks={props.tasks} id={args.match.params.id}/>
+        } />
+        <Route path="/complete/:id" exact={true} render={(args) =>
+            <CompleteTask users={props.users} tasks={props.tasks} id={args.match.params.id}/>
         } />
       </div>
     </Router>

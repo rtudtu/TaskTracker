@@ -11,5 +11,6 @@ defmodule Tasktracker.Repo.Migrations.CreateTasks do
       timestamps()
     end
 
+    create constraint("tasks", :time_spent_must_be_15_minute_increments, check: "(time % 15) = 0")
   end
 end

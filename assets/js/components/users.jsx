@@ -1,12 +1,19 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
+import { Card, CardText, CardBody,
+  CardTitle, CardSubtitle, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 function User(params) {
   return(
     <div>
-      <p>User Id: {params.user.id}</p>
-      <p>User Email: {params.user.email}</p>
-      <p>User Name: {params.user.name}</p>
+      <Card className="container">
+        <CardBody>
+          <CardTitle>Name: {params.user.name}</CardTitle>
+          <CardText>Email: {params.user.email}</CardText>
+          <CardText>Id: {params.user.id}</CardText>
+        </CardBody>
+      </Card>
     </div>
   );
 }

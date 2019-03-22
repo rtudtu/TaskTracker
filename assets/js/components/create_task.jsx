@@ -28,14 +28,26 @@ function CreateTask(params) {
     clear(ev);
   }
 
+  let user;
+  let option;
 
-  let user = _.find(params.users, function(user) { return user.id == params.token.user_id; });
+  if(params.token) {
+    user = _.find(params.users, function(user) { return user.id == params.token.user_id; });
+  }
+
+  if (user) {
+    option = <option key={user.id} value={user.id}>{user.name}</option>;
+  } else {
+    option = <option></option>
+  }
+
   return <div>
     <h2>New Task</h2>
     <FormGroup>
       <Label for="user_id">User</Label>
       <Input type="select" name="user_id" value={params.form.id} onChange={update}>
-        <option key={user.id} value={user.id}>{user.name}</option>
+        <option key="" value=""></option>
+        { option }
       </Input>
     </FormGroup>
     <FormGroup>
@@ -45,6 +57,10 @@ function CreateTask(params) {
     <FormGroup>
       <Label for="desc">Desc</Label>
       <Input type="textarea" name="desc" value={params.form.desc} onChange={update} />
+    </FormGroup>
+    <FormGroup>
+      <Label for="status">Status</Label>
+      <Input type="text" name="status" value={params.form.status} onChange={update} />
     </FormGroup>
     <Button onClick={ submit }>Post</Button>
   </div>;

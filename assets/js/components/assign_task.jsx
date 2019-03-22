@@ -8,9 +8,9 @@ export default function AssignTask(params) {
  let users = _.map(params.users, (uu) => <option key={uu.id} value={uu.id}>{uu.name}</option>);
 
  function assign(ev) {
-    let assignee_id = document.querySelector("#assignee_id").value;
+    let user_id = document.querySelector("#user_id").value;
 
-    let task = {id: params.id, assignee_id: assignee_id };
+    let task = {id: params.id, user_id: user_id };
     api.update_task(task);
   }
 
@@ -19,7 +19,7 @@ export default function AssignTask(params) {
       <h2>Assign Task</h2>
         <FormGroup>
           <Label for="user_id">Assign to</Label>
-          <Input type="select" name="user_id" id="assignee_id">
+          <Input type="select" name="user_id" id="user_id">
             <option key="" value=""></option>
             { users }
           </Input>

@@ -12,16 +12,12 @@
 alias Tasktracker.Repo
 alias Tasktracker.Users.User
 alias Tasktracker.Tasks.Task
-alias Tasktracker.Tasks.Manage
 
-Repo.insert!(%User{email: "tu.r@husky.neu.edu", name: "Richard"})
-Repo.insert!(%User{email: "bob@gmail.com", name: "Bob"})
-Repo.insert!(%User{email: "joe@gmail.com", name: "Joe"})
-Repo.insert!(%User{email: "john@gmail.com", name: "John"})
+Repo.insert!(%User{email: "tu.r@husky.neu.edu", name: "Richard", password: "P@ssw0rd"})
+Repo.insert!(%User{email: "bob@gmail.com", name: "Bob", password: "P@ssw0rd"})
+Repo.insert!(%User{email: "joe@gmail.com", name: "Joe", password: "P@ssw0rd"})
+Repo.insert!(%User{email: "john@gmail.com", name: "John", password: "P@ssw0rd"})
 
-Repo.insert!(%Task{desc: "Networks", name: "Study", status: "Incomplete", time: 60})
-Repo.insert!(%Task{desc: "Web Dev", name: "Homework", status: "Incomplete", time: 120})
-Repo.insert!(%Task{desc: "Software Dev", name: "Homework", status: "Incomplete", time: 90})
-Repo.insert!(%Manage{manager_id: 1, employee_id: 2})
-Repo.insert!(%Manage{manager_id: 1, employee_id: 3})
-Repo.insert!(%Manage{manager_id: 3, employee_id: 4})
+Repo.insert!(%Task{desc: "Networks", name: "Study", status: "Incomplete", time: 60, user_id: 1})
+Repo.insert!(%Task{desc: "Web Dev", name: "Homework", status: "Incomplete", time: 120, user_id: 2})
+Repo.insert!(%Task{desc: "Software Dev", name: "Homework", status: "Incomplete", time: 90, user_id: 3})

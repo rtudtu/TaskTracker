@@ -10,37 +10,6 @@
   </head>
 
   <body>
-  <div class="container">
-    <header>
-      <section class="container">
-        <nav role="navigation", class="navbar navbar-expand-sm navbar-light bg-white">
-          <ul class = "navbar-nav mr-auto">
-            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-          </ul>
-          <ul class = "navbar-nav mr-auto">
-            <li class="nav-item"><a class="nav-link" href="/tasks">Tasks</a></li>
-          </ul>
-          <ul class = "navbar-nav mr-auto">
-            <li class="nav-item"><a class="nav-link" href="/users">Users</a></li>
-          </ul>
-          <div class="col-4">
-            <%= if @current_user do %>
-              <p>
-                User: <%= @current_user.email %> ||
-                <%= link("Logout", to: Routes.session_path(@conn, :delete),
-                  method: :delete, class: "btn btn-secondary") %>
-              </p>
-            <% else %>
-              <%= form_for @conn, Routes.session_path(@conn, :create),
-                        [class: "form-inline"], fn f -> %>
-                <%= text_input f, :email, class: "form-control" %>
-                <%= submit "Login", class: "btn btn-secondary" %>
-              <% end %>
-            <% end %>
-          </div>
-        </nav>
-      </section>
-    </header>
   <div>
     <%= if get_flash(@conn, :info) do %>
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
@@ -50,18 +19,9 @@
     <% end %>
 
     <main role="main" class="container">
-      <%= if get_flash(@conn, :info) do %>
-        <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <% end %>
-      <%= if get_flash(@conn, :error) do %>
-        <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %>
-        <%= get_flash(@conn, :error) %>
-        </p>
-      <% end %>
-
       <%= render @view_module, @view_template, assigns %>
     </main>
-
+  </div>
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </body>
 
