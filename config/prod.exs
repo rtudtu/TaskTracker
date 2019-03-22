@@ -14,7 +14,7 @@ config :tasktracker, TasktrackerWeb.Endpoint,
   root: ".",
   version: Application.spec(:phoenix_distillery, :vsn),
   http: [:inet6, port: {:system, "PORT"}],
-  url: [host: "tasks2.rtudtu.com", port: 80],
+  url: [host: "tasks3.rtudtu.com", port: 80],
 cache_static_manifest: "priv/static/cache_manifest.json"
 # Do not print debug messages in production
 config :logger, level: :info
@@ -81,3 +81,11 @@ secret = File.read!(path)
 
 config :tasktracker, TasktrackerWeb.Endpoint,
 secret_key_base: secret
+
+# Configure your database
+config :tasktracker, Tasktracker.Repo,
+  username: "tasktracker3",
+  password: "eo6ohPeethai",
+  database: "tasktracker3_prod",
+  hostname: "localhost",
+  pool_size: 10
