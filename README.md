@@ -7,6 +7,7 @@ yield no effect
 -Users may assign tasks (only tasks that are assigned to them currently) to
 other Users
 -Time spent is input when users 'Complete' a task or update it with the 'Complete' Button
+NOTE: Do not create more than 1 user or task when on the same page - come back to the register page or come back to the 'create task' page to create another
 
 # To Start Server:
 
