@@ -1,4 +1,4 @@
-# Tasktracker 2 with Managers and TimeBlocks
+# Tasktracker 3
 -Users may register accounts with an email, name, and password
 -Users may log in using their email and password. Incorrect combinations
 yield no effect
