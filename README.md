@@ -8,7 +8,7 @@ Tasks Page
 -Task can be unassigned - assigned to nil - not assigned to anyone yet
 Users Page
 -Lists Users, showing their Email and Name
--Has a 'Show' button for each user that brings up that just user's details
+-Has a 'Show' button for each user that brings up that user's details as well as all their assigned tasks
 -Option to add another user (for a friend, colleague, or assignee)
 
 # To Start Server:
